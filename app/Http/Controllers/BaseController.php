@@ -9,12 +9,12 @@ class BaseController extends Controller
 {
     /*
      * Parameter count 3
-     * 1. $status - boolean ( default : true )
-     * 2. $message - string
-     * 3. $data - string
-     * return json
+     * 1. $status - boolean
+     * 2. $message - string ( can be empty )
+     * 3. $data - string ( can be empty )
+     * return arr obj
      */
-    private function res($status = true, $message, $data)
+    private function res($status, $message = null, $data = null)
     {
         $body = [
             'status' => $status,
@@ -22,7 +22,7 @@ class BaseController extends Controller
             'data' => $data
         ];
 
-        return json_encode($body);
+        return $body;
     }
 
     /*
@@ -39,7 +39,7 @@ class BaseController extends Controller
         $pin_code = $credentials['pin_code'];
 
         if (!$user_name || !$pin_code) {
-            return "Too Few Argument";
+            return $this->res(false, "Too Few Argument!");
         }
 
         // checking if user name available on db or not 
@@ -51,7 +51,7 @@ class BaseController extends Controller
             ]);
 
             if (!$isCreated)
-                return "Failed to create new user account";
+                return $this->res(false, "Failed to create new user account");
         }
 
         // retrieving the user row from db
@@ -60,7 +60,7 @@ class BaseController extends Controller
         // checking if the user pin_code is correct or not 
         $isPinMatch = $this->checkUserPin($pin_code, $user[0]['pin_code']);
         if (!$isPinMatch) {
-            return false;
+            return $this->res(false, "The Pin Code doesn't match");
         }
 
         // save the user on session 
