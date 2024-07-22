@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers\Lists;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\ListItem;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class ListController extends Controller
+class ListController extends BaseController
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $auth_user_id = $this->user()->id;
+        $user = User::where('id', $auth_user_id)->first();
+        return view('lists.index', ["user" => $user]);
     }
 
     /**
