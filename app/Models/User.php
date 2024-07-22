@@ -41,4 +41,9 @@ class User extends Authenticatable
             'pin_code' => 'hashed',
         ];
     }
+
+    public function listItems()
+    {
+        return $this->hasMany(ListItem::class);
+    }
 }
