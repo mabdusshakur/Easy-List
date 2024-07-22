@@ -66,7 +66,7 @@ class BaseController extends Controller
         // save the user on session 
         $this->setUser($user[0]);
 
-        return true;
+        return $this->res(true);
     }
 
 
@@ -135,7 +135,7 @@ class BaseController extends Controller
 
         // if not user found then return false
         if (!$user)
-            return false;
+            return $this->res(false);
 
         // return the user obj
         return $user;
@@ -150,6 +150,6 @@ class BaseController extends Controller
     public function logout()
     {
         session()->remove('user');
-        return true;
+        return $this->res(true);
     }
 }
