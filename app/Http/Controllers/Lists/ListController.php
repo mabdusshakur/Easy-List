@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Lists;
 
 use App\Http\Controllers\BaseController;
-use App\Http\Controllers\Controller;
 use App\Models\ListItem;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,7 +16,7 @@ class ListController extends BaseController
     {
         $auth_user_id = $this->user()->id;
         $user = User::where('id', $auth_user_id)->first();
-        return view('lists.index', ["user" => $user]);
+        return view('index', ["items" => $user->listItems]);
     }
 
     /**
@@ -33,7 +32,15 @@ class ListController extends BaseController
      */
     public function store(Request $request)
     {
-        //
+        $created = ListItem::create([
+            'title' => $request->title,
+            'user_id' => $this->user()->id,
+        ]);
+
+        if (!$created)
+            return redirect()->back()->with('error', 'failed to add list item');
+
+        return redirect()->back()->with('success', 'list item added');
     }
 
     /**
@@ -57,7 +64,7 @@ class ListController extends BaseController
      */
     public function update(Request $request, ListItem $listItem)
     {
-        //
+        dd($request->all());
     }
 
     /**
