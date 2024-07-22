@@ -16,7 +16,12 @@ class ListController extends BaseController
     {
         $auth_user_id = $this->user()->id;
         $user = User::where('id', $auth_user_id)->first();
-        return view('index', ["items" => $user->listItems]);
+        $status = request('status');
+        $items = $user->listItems;
+        if ($status == 'pending' || $status == 'completed') {
+            $items = $items->where('status', $status);
+        }
+        return view('index', ["items" => $items]);
     }
 
     /**
