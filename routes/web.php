@@ -9,4 +9,7 @@ Route::get('/logout', [EnterPageController::class, 'exit'])->name('enter.logout'
 Route::post('/enter', [EnterPageController::class, 'enter'])->name('enter.post');
 
 
-Route::resource('/', ListController::class);
+Route::get('/', [ListController::class, 'index']);
+Route::post('/', [ListController::class, 'store']);
+Route::patch('/', [ListController::class, 'update']);
+Route::delete('/', [ListController::class, 'destroy']);
