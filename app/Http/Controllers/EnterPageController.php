@@ -21,8 +21,8 @@ class EnterPageController extends BaseController
             ];
             $res = $this->login($data);
 
-            if ($res != true) {
-                dd($res);
+            if ($res['status'] != true) {
+                dd($res['message']);
             }
 
             return $this->user();
@@ -30,5 +30,11 @@ class EnterPageController extends BaseController
         } catch (\Throwable $th) {
             dd($th->getMessage());
         }
+    }
+
+    function exit()
+    {
+        $this->logout();
+        return "logout";
     }
 }
