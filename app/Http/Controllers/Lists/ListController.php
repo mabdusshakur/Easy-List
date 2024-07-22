@@ -64,7 +64,14 @@ class ListController extends BaseController
      */
     public function update(Request $request, ListItem $listItem)
     {
-        dd($request->all());
+        if ($listItem->status == "pending") {
+            $listItem->status = "completed";
+            $listItem->save();
+            return redirect()->back()->with('success', 'Status updated');
+        }
+        $listItem->status = "pending";
+        $listItem->save();
+        return redirect()->back()->with('success', 'Status updated');
     }
 
     /**
@@ -72,6 +79,10 @@ class ListController extends BaseController
      */
     public function destroy(ListItem $listItem)
     {
-        //
+        if ($listItem) {
+            $listItem->delete();
+            return redirect()->back()->with('success', 'list item removed');
+        }
+        return redirect()->back()->with('error', 'list item not found');
     }
 }
