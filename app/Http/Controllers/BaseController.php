@@ -27,7 +27,13 @@ class BaseController extends Controller
         // checking if user name available on db or not 
         $userFound = $this->checkUserName($user_name);
         if (!$userFound) {
-            return "User Doesn't exist";
+            $isCreated = User::create([
+                'user_name' => $user_name,
+                'pin_code' => $pin_code
+            ]);
+
+            if (!$isCreated)
+                return "Failed to create new user account";
         }
 
         // retrieving the user row from db
