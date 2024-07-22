@@ -9,7 +9,7 @@ Route::get('/logout', [EnterPageController::class, 'exit'])->name('enter.logout'
 Route::post('/enter', [EnterPageController::class, 'enter'])->name('enter.post');
 
 
-Route::get('/', [ListController::class, 'index']);
-Route::post('/', [ListController::class, 'store']);
-Route::patch('/', [ListController::class, 'update']);
-Route::delete('/', [ListController::class, 'destroy']);
+Route::get('/', [ListController::class, 'index'])->name('list.index');
+Route::post('/', [ListController::class, 'store'])->name('list.post');
+Route::patch('/{listItem}', [ListController::class, 'update'])->name('list.patch');
+Route::delete('/{listItem}', [ListController::class, 'destroy'])->name('list.delete');
