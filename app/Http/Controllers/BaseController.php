@@ -8,6 +8,24 @@ use Illuminate\Support\Facades\Hash;
 class BaseController extends Controller
 {
     /*
+     * Parameter count 3
+     * 1. $status - boolean ( default : true )
+     * 2. $message - string
+     * 3. $data - string
+     * return json
+     */
+    private function res($status = true, $message, $data)
+    {
+        $body = [
+            'status' => $status,
+            'message' => $message,
+            'data' => $data
+        ];
+
+        return json_encode($body);
+    }
+
+    /*
      * Parameter as array[]
      * $credentials = [user_name, pin_code] - Count 2
      * 1. user_name - String from client side 
