@@ -1,5 +1,5 @@
 <div>
-    <form action="{{ url('/') }}" method="post">
+    <form action="{{ route('list.post') }}" method="post">
         @csrf
         <label for="title">Title</label>
         <input id="title" name="title" type="text">
