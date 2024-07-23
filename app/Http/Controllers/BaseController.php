@@ -138,7 +138,7 @@ class BaseController extends Controller
             return $this->res(false);
 
         // return the user obj
-        return $user;
+        return $this->res(true, 'user found', $user);
     }
 
 
