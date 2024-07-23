@@ -1,5 +1,5 @@
 <x-layout title="All List">
-    <h1>List index page</h1>
+    <a href="{{ route('enter.logout') }}">Logout</a>
 
     <x-lists.create-form />
     <x-lists.drop-down />
