@@ -25,7 +25,7 @@ class EnterPageController extends BaseController
                 dd($res['message']);
             }
 
-            return $this->user();
+            return redirect()->route('list.index');
 
         } catch (\Throwable $th) {
             dd($th->getMessage());
@@ -35,6 +35,6 @@ class EnterPageController extends BaseController
     function exit()
     {
         $this->logout();
-        return "logout";
+        return redirect()->route('enter.index');
     }
 }
