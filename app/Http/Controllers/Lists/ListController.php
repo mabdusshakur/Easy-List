@@ -14,7 +14,7 @@ class ListController extends BaseController
      */
     public function index()
     {
-        $auth_user_id = $this->user()->id;
+        $auth_user_id = $this->user()['data']->id;
         $user = User::where('id', $auth_user_id)->first();
         $status = request('status');
         $items = $user->listItems;
@@ -39,7 +39,7 @@ class ListController extends BaseController
     {
         $created = ListItem::create([
             'title' => $request->title,
-            'user_id' => $this->user()->id,
+            'user_id' => $this->user()['data']->id,
         ]);
 
         if (!$created)
