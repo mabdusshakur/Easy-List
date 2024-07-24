@@ -1,5 +1,5 @@
-<div>
-    <select id="status" name="status" onchange="updateStatus()">
+<div class="flex justify-center">
+    <select class="mt-2 rounded-md border bg-transparent px-20 py-2" id="status" name="status" onchange="updateStatus()">
         <option>Filter</option>
         <option value="all">all</option>
         <option value="completed">completed</option>
