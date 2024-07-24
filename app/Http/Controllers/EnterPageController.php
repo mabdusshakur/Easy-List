@@ -22,13 +22,13 @@ class EnterPageController extends BaseController
             $res = $this->login($data);
 
             if ($res['status'] != true) {
-                dd($res['message']);
+                return redirect()->back()->with('error', $res['message']);
             }
 
             return redirect()->route('list.index');
 
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+            return redirect()->back()->with('error', $th->getMessage());
         }
     }
 
