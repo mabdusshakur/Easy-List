@@ -1,8 +1,6 @@
 <div class="my-2 flex justify-center px-4">
     <div class="flex items-center justify-between gap-10 border-b border-gray-200 py-4">
-        <div class="flex-grow">
-            <h3 class="{{ $item->status == 'pending' ? 'text-blue-500' : 'text-green-500' }} truncate">{{ $item->title }}</h3>
-        </div>
+        <h3 class="{{ $item->status == 'pending' ? 'text-blue-500' : 'text-green-500' }} truncate">{{ $item->title }}</h3>
         <form action="{{ route('list.patch', $item->id) }}" method="post">
             @csrf
             @method('patch')
