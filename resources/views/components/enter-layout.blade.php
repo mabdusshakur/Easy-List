@@ -11,7 +11,9 @@
 </head>
 
 <body>
-    {{ $slot }}
+    <div class="flex h-screen items-center justify-center">
+        {{ $slot }}
+    </div>
 </body>
 
 </html>
